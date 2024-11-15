@@ -42,7 +42,7 @@ jobs:
 
       - name: Build image
         run: |
-          .\ESXi-Customizer-PS.ps1 -v67 -load net55-r8168,esx-ui,net-igb,esxcli-shell
+          .\ESXi-Customizer-PS.ps1 -v67 -load net55-r8168,net-igb
           dir
 
       - name: Upload firmware
