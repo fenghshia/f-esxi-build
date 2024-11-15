@@ -47,5 +47,5 @@ jobs:
       - name: Upload firmware
         uses: actions/upload-artifact@main
         with:
-          name: ESXi-7.0.iso
-          path: ESXi-7.0*.iso
+          name: ESXi-6.7.iso
+          path: ESXi-6.7*.iso
