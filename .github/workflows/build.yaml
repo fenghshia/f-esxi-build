@@ -31,7 +31,10 @@ jobs:
           ref: main
 
       - name: Initialization Environment
-        run: choco install vmware-powercli-psmodule
+        run: |
+          choco install vmware-powercli-psmodule
+          choco install python310 --params "/InstallDir:.\python"
+          .\python.exe -m pip install -U pip six lxml psutil pyOpenSSL
 
       - name: Build image
         run: .\ESXi-Customizer-PS.ps1 -v70
