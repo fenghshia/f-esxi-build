@@ -30,24 +30,22 @@ jobs:
         with:
           ref: main
 
+      - name: Install python packge
+        run: python -m pip install -U pip six lxml psutil pyOpenSSL
+
       - name: Initialization Environment
         run: |
-          python -m pip install -U pip six lxml psutil pyOpenSSL
-          where python
-
-      # - name: Initialization Environment
-      #   run: |
-      #     choco install vmware-powercli-psmodule
+          choco install vmware-powercli-psmodule
       #     choco install python310 --params "/InstallDir:.\python"
       #     C:\ProgramData\chocolatey\bin\python3.10.exe -m pip install -U pip six lxml psutil pyOpenSSL
 
-      # - name: Build image
-      #   run: |
-      #     Set-PowerCLIConfiguration -PythonPath C:\ProgramData\chocolatey\bin\python3.10.exe
-      #     .\ESXi-Customizer-PS.ps1 -v70
+      - name: Build image
+        run: |
+          Set-PowerCLIConfiguration -PythonPath C:\ProgramData\chocolatey\bin\python3.10.exe
+          .\ESXi-Customizer-PS.ps1 -v70
 
-      # - name: Upload firmware
-      #   uses: actions/upload-artifact@main
-      #   with:
-      #     name: ESXi-7.0.iso
-      #     path: ESXi-7.0*.iso
+      - name: Upload firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: ESXi-7.0.iso
+          path: ESXi-7.0*.iso
