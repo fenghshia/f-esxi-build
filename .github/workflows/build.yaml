@@ -31,7 +31,7 @@ jobs:
           ref: main
 
       - name: Initialization Environment
-        run: install-module -Name VMware.PowerCLI
+        run: choco install vmware-powercli-psmodule
 
       - name: Build image
         run: .\ESXi-Customizer-PS.ps1 -v70
