@@ -34,10 +34,12 @@ jobs:
         run: |
           choco install vmware-powercli-psmodule
           choco install python310 --params "/InstallDir:.\python"
-          .\python.exe -m pip install -U pip six lxml psutil pyOpenSSL
+          .\python\python.exe -m pip install -U pip six lxml psutil pyOpenSSL
 
       - name: Build image
-        run: .\ESXi-Customizer-PS.ps1 -v70
+        run: |
+          Set-PowerCLIConfiguration -PythonPath .\python\python.exe
+          .\ESXi-Customizer-PS.ps1 -v70
 
       - name: Upload firmware
         uses: actions/upload-artifact@main
