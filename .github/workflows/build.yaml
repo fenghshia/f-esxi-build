@@ -38,11 +38,11 @@ jobs:
           choco install vmware-powercli-psmodule
       #     choco install python310 --params "/InstallDir:.\python"
       #     C:\ProgramData\chocolatey\bin\python3.10.exe -m pip install -U pip six lxml psutil pyOpenSSL
-          # Set-PowerCLIConfiguration -PythonPath C:\ProgramData\chocolatey\bin\python3.10.exe ,net55-r8168
+          # Set-PowerCLIConfiguration -PythonPath C:\ProgramData\chocolatey\bin\python3.10.exe  -load net-igb,net55-r8168
 
       - name: Build image
         run: |
-          .\ESXi-Customizer-PS.ps1 -v67 -load net-igb
+          .\ESXi-Customizer-PS.ps1 -v67
           cat C:\Users\RUNNER~1\AppData\Local\Temp\*.log
           dir
 
