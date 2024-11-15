@@ -42,7 +42,7 @@ jobs:
 
       - name: Build image
         run: |
-          .\ESXi-Customizer-PS.ps1 -v67 -sip ESXi-6.7.0-20220704001-standard -load net-igb,net55-r8168
+          .\ESXi-Customizer-PS.ps1 -v67 -sip ESXi-6.7.0-20220604001-standard -load net-igb,net55-r8168
           cat C:\Users\RUNNER~1\AppData\Local\Temp\*.log
           dir
 
