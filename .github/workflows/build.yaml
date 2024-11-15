@@ -1,0 +1,42 @@
+name: Build R7800 OpenWrt
+
+on:
+  push:
+    branches:
+       - 'main'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: powershell
+
+    - name: Checkout Branch
+      uses: actions/checkout@main
+      with:
+        ref: main
+
+    - name: Initialization Environment
+      run: install-module -Name VMware.PowerCLI
+
+    - name: Build
+      run: .\ESXi-Customizer-PS.ps1 -v70
+
+    - name: Upload firmware
+      uses: actions/upload-artifact@main
+      with:
+        name: ESXi-7.0.iso
+        path: ESXi-7.0*.iso
