@@ -24,19 +24,20 @@ jobs:
       run:
         shell: powershell
 
-    - name: Checkout Branch
-      uses: actions/checkout@main
-      with:
-        ref: main
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@main
+        with:
+          ref: main
 
-    - name: Initialization Environment
-      run: install-module -Name VMware.PowerCLI
+      - name: Initialization Environment
+        run: install-module -Name VMware.PowerCLI
 
-    - name: Build image
-      run: .\ESXi-Customizer-PS.ps1 -v70
+      - name: Build image
+        run: .\ESXi-Customizer-PS.ps1 -v70
 
-    - name: Upload firmware
-      uses: actions/upload-artifact@main
-      with:
-        name: ESXi-7.0.iso
-        path: ESXi-7.0*.iso
+      - name: Upload firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: ESXi-7.0.iso
+          path: ESXi-7.0*.iso
